@@ -67,3 +67,19 @@ echo situacao($nota);
 # Observação: este exercício é apenas para praticar lógica.
 # Em sistemas reais, senhas não devem ser armazenadas
 # diretamente em texto puro.
+
+$emailCadastrado = "admin@teste.com";
+$senhaCadastrada = "123456";
+
+function login(string $email,string $senha){
+    if ($email === "admin@teste.com" && $senha === "123456"){
+        return true;
+    }else{
+        return false;
+    }
+}
+if (login($emailCadastrado, $senhaCadastrada)){
+    echo "Login realizado!";
+}else{
+    echo "Credenciais inválidas";
+}
