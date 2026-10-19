@@ -26,6 +26,6 @@ echo $soma. "\n" . $subtracao . "\n" . $multiplicacao . "\n" . $divisao . "\n";
 #Desenvolva um programa que calcule e exiba:
 
 $produto = 150;
-$compra_desconto = $produto * 4 - ($produto * 0.1);
+$compra_desconto = $produto * 4 - ($produto * 4 * 0.1);
 
 echo "Valor total: ". "\n" . $produto * 4 . "\n" . "Valor do desconto: " . "\n" . $produto * 4  - $compra_desconto . "\n" . "Valor final: " . $compra_desconto;
