@@ -16,11 +16,10 @@ function par_impar(string $num){
     }
 }
 if (par_impar($numero)){
-    echo "Par!";
+    echo "Par!\n";
 }else{
-    echo "Impar!";
+    echo "Impar!\n";
 }
-
 
 # EXERCÍCIO 02 - SISTEMA DE NOTAS
 # Crie uma variável $nota, de 0 a 10.
@@ -32,6 +31,18 @@ if (par_impar($numero)){
 # - Nota menor que 0 ou maior que 10: Nota inválida
 #
 # Exiba a situação do aluno.
+
+$nota = 10;
+function situacao(float $nota){
+    if ($nota >=7 ){
+        return "Aprovado!\n";
+    }elseif($nota >= 5){
+        return "Recuperação\n";
+    }else{
+        return "Reprovado\n";
+    }
+}
+echo situacao($nota);
 
 
 # EXERCÍCIO 03 - LOGIN SIMPLIFICADO
