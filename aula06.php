@@ -1,0 +1,103 @@
+<?php
+
+# AULA 06 - MANIPULAÇÃO DE STRINGS E ARRAYS
+
+# EXERCÍCIO 01 - NORMALIZAR NOME
+# Crie uma função chamada normalizarNome().
+#
+# Ela deve receber uma string e retornar
+# o nome sem espaços extras nas extremidades
+# e com todas as letras em maiúsculas.
+#
+# Exemplo:
+# Entrada: "  vitor silva  "
+# Saída: "VITOR SILVA"
+#
+# Utilize trim() e strtoupper().
+function normalizarNome(string $nome): string{
+    return strtoupper(trim($nome));
+}
+echo normalizarNome("Vitor HUGo ");
+
+# EXERCÍCIO 02 - CONTAR CARACTERES
+# Crie uma função chamada contarCaracteres().
+#
+# Ela deve receber uma string e retornar
+# a quantidade de caracteres.
+#
+# Exemplo:
+# contarCaracteres("Laravel")
+# Resultado: 7
+#
+# Utilize strlen().
+# Para este exercício, use palavras sem acentos.
+
+
+# EXERCÍCIO 03 - VERIFICAR EXISTÊNCIA
+# Considere o array:
+#
+# $linguagens = ["PHP", "Python", "Java", "Go"];
+#
+# Crie uma função chamada existeLinguagem().
+#
+# Ela deve receber:
+# - Um array de linguagens.
+# - Uma string com o nome procurado.
+#
+# Retorne true se a linguagem existir no array.
+# Caso contrário, retorne false.
+#
+# Utilize in_array() com comparação estrita.
+
+
+# EXERCÍCIO 04 - DIVIDIR NOMES
+# Considere a string:
+#
+# $nomes = "Vitor,Paulo,Carlos,Ana";
+#
+# Utilize explode() para transformá-la
+# em um array de nomes.
+#
+# Depois, percorra o array com foreach
+# e exiba um nome por linha.
+
+
+# EXERCÍCIO 05 - TOTAL DE COMPRAS
+# Considere o array:
+#
+# $compras = [120.50, 89.90, 45.00, 200.00];
+#
+# Crie uma função chamada calcularTotalCompras().
+#
+# Ela deve receber o array de valores
+# e retornar o total das compras.
+#
+# Utilize array_sum().
+# Exiba o resultado com duas casas decimais.
+
+
+# DESAFIO 06 - BUSCA DE USUÁRIOS
+# Considere o array:
+#
+# $usuarios = [
+#     ["nome" => "Vitor", "ativo" => true],
+#     ["nome" => "Paulo", "ativo" => false],
+#     ["nome" => "Carlos", "ativo" => true],
+#     ["nome" => "Ana", "ativo" => true]
+# ];
+#
+# Crie uma função chamada buscarUsuariosAtivos().
+#
+# Ela deve receber um array de usuários
+# e retornar um novo array contendo apenas
+# os usuários ativos.
+#
+# Utilize array_filter().
+#
+# Depois, utilize foreach para exibir
+# o nome de cada usuário ativo.
+#
+# Resultado esperado:
+# Vitor
+# Carlos
+# Ana
