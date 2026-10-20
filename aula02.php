@@ -7,20 +7,15 @@
 # um número par ou ímpar.
 # Exiba o resultado.
 # Dica: utilize o operador % (resto da divisão).
-$numero = 2;
-function par_impar(string $num){
-    if ($num % 2 == 0){
-        return true;
-    }else{
-        return false;
-    }
+$numero = 3;
+function par_impar(int $num):bool{
+    return $num % 2 == 0;
 }
 if (par_impar($numero)){
-    echo "Par!\n";
+    echo "Par\n";
 }else{
-    echo "Impar!\n";
+    echo "Impar\n";
 }
-
 # EXERCÍCIO 02 - SISTEMA DE NOTAS
 # Crie uma variável $nota, de 0 a 10.
 # Implemente as seguintes regras:
@@ -32,9 +27,11 @@ if (par_impar($numero)){
 #
 # Exiba a situação do aluno.
 
-$nota = 10;
+$nota = -1;
 function situacao(float $nota){
-    if ($nota >=7 ){
+    if ($nota < 0 || $nota >10){
+        return "Nota invalida!\n";
+    }elseif ($nota >=7 ){
         return "Aprovado!\n";
     }elseif($nota >= 5){
         return "Recuperação\n";
@@ -43,7 +40,6 @@ function situacao(float $nota){
     }
 }
 echo situacao($nota);
-
 
 # EXERCÍCIO 03 - LOGIN SIMPLIFICADO
 # Considere as seguintes credenciais cadastradas:
@@ -71,14 +67,19 @@ echo situacao($nota);
 $emailCadastrado = "admin@teste.com";
 $senhaCadastrada = "123456";
 
-function login(string $email,string $senha){
-    if ($email === "admin@teste.com" && $senha === "123456"){
-        return true;
-    }else{
-        return false;
-    }
+$emailInformado = "admin@teste.com";
+$senhaInformada = "123456";
+
+function login(
+    string $email,
+    string $senha,
+    string $emailCadastrado,
+    string $senhaCadastrada
+): bool
+{
+    return $email == $emailCadastrado && $senha == $senhaCadastrada;
 }
-if (login($emailCadastrado, $senhaCadastrada)){
+if (login($emailInformado, $senhaInformada, $emailCadastrado, $senhaCadastrada)){
     echo "Login realizado!";
 }else{
     echo "Credenciais inválidas";
