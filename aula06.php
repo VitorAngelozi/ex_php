@@ -17,7 +17,7 @@
 function normalizarNome(string $nome): string{
     return strtoupper(trim($nome));
 }
-echo normalizarNome("Vitor HUGo ");
+echo normalizarNome("Vitor HUGo ") . "\n";
 
 # EXERCÍCIO 02 - CONTAR CARACTERES
 # Crie uma função chamada contarCaracteres().
@@ -31,8 +31,10 @@ echo normalizarNome("Vitor HUGo ");
 #
 # Utilize strlen().
 # Para este exercício, use palavras sem acentos.
-
-
+function contarCaracteres(string $palavra): int{
+    return strlen($palavra);
+}
+echo contarCaracteres("jabuti") . "\n";
 # EXERCÍCIO 03 - VERIFICAR EXISTÊNCIA
 # Considere o array:
 #
