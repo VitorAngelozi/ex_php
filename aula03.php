@@ -6,9 +6,9 @@
 # Utilize um laço for para imprimir os números de 1 até 20.
 # Cada número deverá aparecer em uma linha.
 
-for($i=1;$i<= 20;$i++){
-    echo $i . "\n";
-}
+#for($i=1;$i<= 20;$i++){
+    #echo $i . "\n";
+#}
 
 
 # EXERCÍCIO 02 - NÚMEROS PARES
@@ -17,11 +17,11 @@ for($i=1;$i<= 20;$i++){
 #
 # Dica: lembre-se do operador %.
 
-for($i=1;$i<= 50;$i++){
-    if ($i % 2 == 0){
-        echo $i . "\n";
-    }
-}
+#for($i=1;$i<= 50;$i++){
+    #if ($i % 2 == 0){
+        #echo $i . "\n";
+    #}
+#}
 
 
 # EXERCÍCIO 03 - SOMA ACUMULADA
@@ -35,7 +35,14 @@ for($i=1;$i<= 50;$i++){
 #
 # Regra: não utilize uma fórmula matemática pronta.
 # Faça o cálculo utilizando um laço.
-
+$soma = 0;
+for($i=0;$i <= 100; $i++){
+    $soma += $i;
+    if ($i==100){
+        echo $soma;
+    }
+}
+echo $soma;
 
 # EXERCÍCIO 04 - TABUADA
 # Crie uma variável $numero contendo um número inteiro.
