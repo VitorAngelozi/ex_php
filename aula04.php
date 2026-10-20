@@ -1,0 +1,83 @@
+<?php
+
+# AULA 04 - ARRAYS
+
+# EXERCÍCIO 01 - LISTA DE NOMES
+# Crie um array contendo cinco nomes.
+# Utilize foreach para imprimir todos os nomes.
+# Cada nome deve aparecer em uma linha.
+$nomes= ["Vitor", "Paulo", "Joao", "Carlos", "Rodrigo"];
+foreach($nomes as $nome){
+    echo $nome . "\n";
+}
+
+# EXERCÍCIO 02 - SOMA DOS VALORES
+# Considere o array:
+#
+# $numeros = [10, 20, 30, 40, 50];
+#
+# Utilize foreach para calcular a soma dos valores.
+# Exiba o resultado final.
+#
+# Regra: não utilize array_sum().
+
+
+# EXERCÍCIO 03 - MAIOR NÚMERO
+# Considere o array:
+#
+# $numeros = [15, 8, 42, 23, 4, 16];
+#
+# Descubra qual é o maior número utilizando um laço.
+#
+# Regra: não utilize max() ou sort().
+
+
+# EXERCÍCIO 04 - USUÁRIO
+# Crie um array associativo contendo:
+#
+# nome
+# idade
+# email
+# cidade
+#
+# Utilize foreach para exibir as informações
+# no formato:
+#
+# nome: Vitor
+# idade: 22
+# email: exemplo@email.com
+# cidade: Campo Grande
+
+
+# EXERCÍCIO 05 - FILTRANDO NOTAS
+# Considere o array:
+#
+# $notas = [8, 3, 9, 5, 7.5, 2, 10];
+#
+# Crie um novo array contendo apenas as notas
+# maiores ou iguais a 7.
+#
+# Ao final, percorra o novo array e imprima
+# as notas aprovadas.
+#
+# Regra: não utilize array_filter().
+
+
+# DESAFIO 06 - CADASTRO DE PRODUTOS
+# Crie um array contendo três produtos.
+#
+# Cada produto deve possuir:
+# nome, preco e quantidade.
+#
+# Utilize um array de arrays associativos.
+#
+# Percorra todos os produtos utilizando foreach.
+#
+# Para cada produto, exiba:
+# - Nome
+# - Preço
+# - Quantidade
+# - Valor total em estoque (preço * quantidade)
+#
+# Ao final, exiba o valor total do estoque
+# considerando todos os produtos.
