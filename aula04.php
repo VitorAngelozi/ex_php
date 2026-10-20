@@ -113,3 +113,29 @@ foreach($aprovados as $aprovado){
 #
 # Ao final, exiba o valor total do estoque
 # considerando todos os produtos.
+
+$produtos = [
+    [
+        "nome"=> "Botijão de Gás",
+        "preco"=> 180,
+        "quantidade" => 2
+    ],
+    [
+        "nome"=> "Feijão de preto",
+        "preco"=> 18,
+        "quantidade" => 24
+    ],
+    [
+        "nome"=> "Arroz Integral",
+        "preco"=> 22,
+        "quantidade" => 19
+    ],
+];
+
+foreach($produtos as $produto){
+    foreach($produto as $chave => $valor){
+        echo "$chave: $valor\n";
+        echo "Total em estoque:" .  $produto["preco"] * $produto["quantidade"] . "\n";
+    }
+    echo "==============";
+}
