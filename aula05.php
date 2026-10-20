@@ -12,10 +12,10 @@
 #
 # Utilize tipos nos parâmetros e no retorno.
 
-function calcularQuadrado(int $num){
+function calcularQuadrado(int $num): int{
     return $num * $num;
 }
-echo calcularQuadrado(12);
+printf("%d \n", calcularQuadrado(12));
 
 
 # EXERCÍCIO 02 - VERIFICAR MAIORIDADE
@@ -28,6 +28,14 @@ echo calcularQuadrado(12);
 # Fora da função, utilize if/else para exibir:
 # "Maior de idade" ou "Menor de idade".
 
+function verificarMaioridade(int $idade):bool{
+    return $idade >= 18;
+}
+if (verificarMaioridade(18)){
+    echo "Maior de idade";
+}else{
+    echo "Menor de idade";
+}
 
 # EXERCÍCIO 03 - CALCULAR MÉDIA
 # Crie uma função chamada calcularMedia().
@@ -38,6 +46,11 @@ echo calcularQuadrado(12);
 # Utilize float para os parâmetros e o retorno.
 # Exiba o resultado fora da função.
 
+function calcularMedia(float $media1, float $media2, float $media3):float{
+    return ($media1 + $media2 + $media3)/2;
+
+}
+printf("média: %.2f", calcularMedia(1,2,3));
 
 # EXERCÍCIO 04 - CONTAR APROVADOS
 # Crie uma função chamada contarAprovados().
