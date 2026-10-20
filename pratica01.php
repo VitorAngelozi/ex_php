@@ -41,7 +41,8 @@ $alunos = [
 ];
 
 // Desenvolva sua solução abaixo.
-function listarAlunos(array $alunos){
+# FUNCIONALIDADE 01 - LISTAR ALUNOS
+function listarAlunos(array $alunos):array{
     $alunos_lista = [];
     foreach ($alunos as $aluno){
         $situacao = "Reprovado";
@@ -53,3 +54,14 @@ function listarAlunos(array $alunos){
     return $alunos_lista;
 }
 print_r(listarAlunos($alunos));
+
+# FUNCIONALIDADE 02 - BUSCAR ALUNO
+function buscarAluno(array $alunos, int $id){
+    foreach ($alunos as $aluno){
+        if($aluno["id"] === $id){
+            return "Nome: " . $aluno["nome"] . ", nota: ". $aluno["nota"]; 
+        }
+    }
+}
+
+echo buscarAluno($alunos, 1);
