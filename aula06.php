@@ -50,8 +50,20 @@ echo contarCaracteres("jabuti") . "\n";
 # Caso contrário, retorne false.
 #
 # Utilize in_array() com comparação estrita.
-
-
+$linguagens = ["PHP", "Python", "Java", "Go"];
+function existeLinguagem(array $linguagens, string $procura){
+    $procura_formatada = strtolower(trim($procura));
+    $linguagens_formatadas = array_map(function($item)
+    {
+        return strtolower(trim($item));
+    }, $linguagens);
+    return in_array($procura_formatada, $linguagens_formatadas, true);
+}
+if(existeLinguagem($linguagens, "PHP")){
+    echo "linguagem encontrada";
+}else{
+    echo "linguagem não encontrada";
+}
 # EXERCÍCIO 04 - DIVIDIR NOMES
 # Considere a string:
 #
