@@ -26,7 +26,7 @@ $numeros = [10, 20, 30, 40, 50];
 foreach($numeros as $numero){
     $soma += $numero;
 }
-echo $soma;
+echo "$soma\n";
 
 # EXERCÍCIO 03 - MAIOR NÚMERO
 # Considere o array:
@@ -37,6 +37,14 @@ echo $soma;
 #
 # Regra: não utilize max() ou sort().
 
+$numeros = [15, 8, 42, 23, 4, 16];
+$maior = $numeros[0];
+foreach ($numeros as $numero){
+    if ($numero >= $maior){
+        $maior = $numero;
+    }
+}
+echo "$maior\n";
 
 # EXERCÍCIO 04 - USUÁRIO
 # Crie um array associativo contendo:
@@ -54,6 +62,15 @@ echo $soma;
 # email: exemplo@email.com
 # cidade: Campo Grande
 
+$pessoa=[
+    "nome" => "Vitor",
+    "idade" => 22,
+    "email" => "vitor@gmail.com",
+    "cidade" => "cg-ms"
+];
+foreach($pessoa as $chave => $valor){
+    echo "$chave: $valor\n";
+}
 
 # EXERCÍCIO 05 - FILTRANDO NOTAS
 # Considere o array:
