@@ -17,6 +17,12 @@ for($i=1;$i<= 20;$i++){
 #
 # Dica: lembre-se do operador %.
 
+for($i=1;$i<= 50;$i++){
+    if ($i % 2 == 0){
+        echo $i . "\n";
+    }
+}
+
 
 # EXERCÍCIO 03 - SOMA ACUMULADA
 # Crie um programa que calcule a soma de todos
