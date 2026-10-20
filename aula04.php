@@ -6,10 +6,11 @@
 # Crie um array contendo cinco nomes.
 # Utilize foreach para imprimir todos os nomes.
 # Cada nome deve aparecer em uma linha.
-$nomes= ["Vitor", "Paulo", "Joao", "Carlos", "Rodrigo"];
-foreach($nomes as $nome){
-    echo $nome . "\n";
-}
+
+#$nomes= ["Vitor", "Paulo", "Joao", "Carlos", "Rodrigo"];
+#foreach($nomes as $nome){
+    #echo $nome . "\n";
+#}
 
 # EXERCÍCIO 02 - SOMA DOS VALORES
 # Considere o array:
@@ -20,7 +21,12 @@ foreach($nomes as $nome){
 # Exiba o resultado final.
 #
 # Regra: não utilize array_sum().
-
+$soma = 0;
+$numeros = [10, 20, 30, 40, 50];
+foreach($numeros as $numero){
+    $soma += $numero;
+}
+echo $soma;
 
 # EXERCÍCIO 03 - MAIOR NÚMERO
 # Considere o array:
