@@ -47,7 +47,7 @@ if (verificarMaioridade(18)){
 # Exiba o resultado fora da função.
 
 function calcularMedia(float $media1, float $media2, float $media3):float{
-    return ($media1 + $media2 + $media3)/2;
+    return ($media1 + $media2 + $media3)/3;
 
 }
 printf("média: %.2f\n", calcularMedia(1,2,3));
