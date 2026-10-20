@@ -84,7 +84,16 @@ foreach($pessoa as $chave => $valor){
 # as notas aprovadas.
 #
 # Regra: não utilize array_filter().
-
+$notas = [8, 3, 9, 5, 7.5, 2, 10];
+$aprovados = [];
+foreach ($notas as $nota){
+    if ($nota >= 7){
+        $aprovados[]= $nota;
+    }
+}
+foreach($aprovados as $aprovado){
+    echo "$aprovado\n";
+}
 
 # DESAFIO 06 - CADASTRO DE PRODUTOS
 # Crie um array contendo três produtos.
