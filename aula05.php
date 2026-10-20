@@ -46,8 +46,8 @@ if (verificarMaioridade(18)){
 # Utilize float para os parâmetros e o retorno.
 # Exiba o resultado fora da função.
 
-function calcularMedia(float $media1, float $media2, float $media3):float{
-    return ($media1 + $media2 + $media3)/3;
+function calcularMedia(float $nota1, float $nota2, float $nota3):float{
+    return ($nota1 + $nota2 + $nota3)/3;
 
 }
 printf("média: %.2f\n", calcularMedia(1,2,3));
@@ -107,17 +107,17 @@ printf("aprovados: %d\n", contarAprovados($notas));
 # Dica: o tipo de retorno pode ser array|null.
 
 $produtos = [
-["nome" => "Mouse", "preco" => 50],
-["nome" => "Teclado", "preco" => 100],
-["nome" => "Monitor", "preco" => 900]
+["nome" => "Mouse", "preco" => 50, "estoque"=>12],
+["nome" => "Teclado", "preco" => 100, "estoque" =>1],
+["nome" => "Monitor", "preco" => 900, "estoque" => 3]
 ];
 
-function buscarProduto(array $produtos, string $nome):array{
+function buscarProduto(array $produtos, string $nome):array|null{
     foreach ($produtos as $produto)
-        if ($produto["nome"] == $nome){
+        if ($produto["nome"] === $nome){
             return $produto;
         }
-    return [];
+    return null;
 }
 print_r(buscarProduto($produtos, "Teclado"));
 # DESAFIO 06 - CALCULAR ESTOQUE
@@ -135,7 +135,7 @@ print_r(buscarProduto($produtos, "Teclado"));
 function calcularEstoque(array $produtos): float{
     $total = 0;
     foreach ($produtos as $produto){
-        $total += $produto["preco"];
+        $total += $produto["preco"] * $produto["estoque"];
     }
     return $total;
 }
