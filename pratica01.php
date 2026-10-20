@@ -56,12 +56,63 @@ function listarAlunos(array $alunos):array{
 print_r(listarAlunos($alunos));
 
 # FUNCIONALIDADE 02 - BUSCAR ALUNO
-function buscarAluno(array $alunos, int $id){
+function buscarAluno(array $alunos, int $id): string{
     foreach ($alunos as $aluno){
         if($aluno["id"] === $id){
             return "Nome: " . $aluno["nome"] . ", nota: ". $aluno["nota"]; 
         }
     }
+    return "Aluno não encontrado";
 }
 
-echo buscarAluno($alunos, 1);
+echo buscarAluno($alunos, 1) . "\n";
+
+# FUNCIONALIDADE 03 - MÉDIA GERAL
+function mediaGeral(array $alunos): float{
+    $soma = 0;
+    $alunos_qnt = 0;
+    $media = 0;
+    foreach($alunos as $aluno){
+        $soma += $aluno["nota"];
+        $alunos_qnt++;
+    }
+    if($alunos_qnt>0){
+        $media = $soma / $alunos_qnt;
+    }
+
+    return $media;
+}
+echo "Média: " . mediaGeral($alunos);
+
+# FUNCIONALIDADE 04 - LISTAR APROVADOS
+
+function listarAprovados(array $alunos){
+    $aprovados = [];
+    foreach($alunos as $aluno){
+
+        if($aluno["nota"] >= 7){
+            $aprovados[] = $aluno;
+        }
+    }
+    return $aprovados;
+}
+
+print_r(listarAprovados($alunos));
+
+# FUNCIONALIDADE 05 - ATUALIZAR NOTA
+
+function atualizarNota(array &$alunos, int $id, float $nota): bool{
+    if($nota >= 0 && $nota <= 10){
+        foreach($alunos as &$aluno){
+            if ($aluno["id"] === $id){
+                $aluno["nota"] = $nota;
+                return true;
+            }
+        }
+    }
+    return false;
+}
+if (atualizarNota($alunos, 1, 10)){
+    echo buscarAluno($alunos, 1);
+}
+
