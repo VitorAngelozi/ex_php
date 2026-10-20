@@ -74,7 +74,11 @@ if(existeLinguagem($linguagens, "PHP")){
 #
 # Depois, percorra o array com foreach
 # e exiba um nome por linha.
-
+$nomes = "Vitor,Paulo,Carlos,Ana";
+$nomes_list = explode(",",$nomes);
+foreach($nomes_list as $nome){
+    echo $nome . "\n";
+}
 
 # EXERCÍCIO 05 - TOTAL DE COMPRAS
 # Considere o array:
@@ -88,7 +92,11 @@ if(existeLinguagem($linguagens, "PHP")){
 #
 # Utilize array_sum().
 # Exiba o resultado com duas casas decimais.
-
+$compras = [120.50, 89.90, 45.00, 200.00];
+function calcularTotalCompras(array $valores): float{
+    return array_sum($valores);
+}
+printf("Total: %.2f\n", calcularTotalCompras($compras));
 
 # DESAFIO 06 - BUSCA DE USUÁRIOS
 # Considere o array:
@@ -115,3 +123,20 @@ if(existeLinguagem($linguagens, "PHP")){
 # Vitor
 # Carlos
 # Ana
+
+$usuarios = [
+["nome" => "Vitor", "ativo" => true],
+["nome" => "Paulo", "ativo" => false],
+["nome" => "Carlos", "ativo" => true],
+["nome" => "Ana", "ativo" => true]
+];
+
+function buscarUsuariosAtivos(array $usuarios): array{
+    return array_filter($usuarios, function($usuario){
+        return $usuario['ativo'] === true;
+    });
+}
+$usuariosAtivos = buscarUsuariosAtivos($usuarios);
+foreach ($usuariosAtivos as $usuario){
+    echo "Usuarios ativo: " . $usuario["nome"] . "\n";
+}
