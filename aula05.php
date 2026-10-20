@@ -32,9 +32,9 @@ function verificarMaioridade(int $idade):bool{
     return $idade >= 18;
 }
 if (verificarMaioridade(18)){
-    echo "Maior de idade";
+    echo "Maior de idade\n";
 }else{
-    echo "Menor de idade";
+    echo "Menor de idade\n";
 }
 
 # EXERCÍCIO 03 - CALCULAR MÉDIA
@@ -50,7 +50,7 @@ function calcularMedia(float $media1, float $media2, float $media3):float{
     return ($media1 + $media2 + $media3)/2;
 
 }
-printf("média: %.2f", calcularMedia(1,2,3));
+printf("média: %.2f\n", calcularMedia(1,2,3));
 
 # EXERCÍCIO 04 - CONTAR APROVADOS
 # Crie uma função chamada contarAprovados().
@@ -66,7 +66,17 @@ printf("média: %.2f", calcularMedia(1,2,3));
 # Resultado esperado: 3
 #
 # Regra: utilize foreach e não array_filter().
-
+function contarAprovados(array $notas): int{
+    $aprovados = 0;
+    foreach ($notas as $nota){
+        if ($nota >= 7){
+            $aprovados += 1;
+        }
+    }    
+    return $aprovados;
+}
+$notas = [1, 7, 3, 10, 9];
+printf("aprovados: %d\n", contarAprovados($notas));
 
 # EXERCÍCIO 05 - BUSCAR PRODUTO
 # Considere o array:
@@ -96,7 +106,20 @@ printf("média: %.2f", calcularMedia(1,2,3));
 #
 # Dica: o tipo de retorno pode ser array|null.
 
+$produtos = [
+["nome" => "Mouse", "preco" => 50],
+["nome" => "Teclado", "preco" => 100],
+["nome" => "Monitor", "preco" => 900]
+];
 
+function buscarProduto(array $produtos, string $nome):array{
+    foreach ($produtos as $produto)
+        if ($produto["nome"] == $nome){
+            return $produto;
+        }
+    return [];
+}
+print_r(buscarProduto($produtos, "Teclado"));
 # DESAFIO 06 - CALCULAR ESTOQUE
 # Reaproveite o array de produtos da Aula 04.
 #
