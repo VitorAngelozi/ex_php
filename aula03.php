@@ -38,9 +38,6 @@
 $soma = 0;
 for($i=0;$i <= 100; $i++){
     $soma += $i;
-    if ($i==100){
-        echo $soma;
-    }
 }
 echo $soma;
 
@@ -55,6 +52,11 @@ echo $soma;
 # 5 x 2 = 10
 # ...
 # 5 x 10 = 50
+$numero = 5;
+for ($i=1; $i <= 10; $i++){
+    $tabuada = $numero * $i;
+    echo "$numero * $i = $tabuada\n";
+}
 
 
 # EXERCÍCIO 05 - CONTADOR REGRESSIVO
@@ -63,8 +65,12 @@ echo $soma;
 #
 # Após terminar a contagem, exiba:
 # "Contagem finalizada!"
-
-
+$contador = 10;
+while($contador >= 1){
+    echo "$contador\n";
+    $contador--;
+}
+echo "Contagem finalizada";
 # DESAFIO 06 - CONTAGEM DE APROVADOS
 # Considere o seguinte array de notas:
 #
@@ -79,3 +85,12 @@ echo $soma;
 #
 # Dica: você vai precisar de uma variável
 # para acumular a quantidade.
+
+$notas = [8, 4, 7.5, 3, 9, 6, 10];
+$aprovados = 0;
+foreach($notas as $nota){
+    if($nota >= 7){
+        $aprovados +=1;
+    }
+}
+echo $aprovados;
