@@ -132,3 +132,12 @@ print_r(buscarProduto($produtos, "Teclado"));
 #
 # Não utilize echo dentro da função.
 # O resultado deve ser exibido fora dela.
+function calcularEstoque(array $produtos): float{
+    $total = 0;
+    foreach ($produtos as $produto){
+        $total += $produto["preco"];
+    }
+    return $total;
+}
+
+printf("Total: %.2f ", calcularEstoque($produtos));
