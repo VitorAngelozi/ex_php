@@ -63,7 +63,7 @@ class Produto{
 $mouse = new Produto("Mouse", 100);
 echo $mouse->getNome() . "\n";
 echo $mouse->getPreco() . "\n";
-echo $mouse->alterarPreco(100) ."\n";
+$mouse->alterarPreco(100) ."\n";
 echo $mouse->getPreco() . "\n";
 #echo $mouse->alterarPreco(-50) . "\n";
 #echo $mouse->getPreco() . "\n";
@@ -92,6 +92,30 @@ echo $mouse->getPreco() . "\n";
 # Decrementar duas vezes -> 0.
 # O segundo decremento não deve deixar
 # o valor negativo.
+class Contador{
+    private int $valor = 0;
+    public function incrementar():void{
+        $this->valor += 1;
+        return;
+    }
+    public function decrementar():void{
+        if($this->valor > 0){
+            $this->valor -= 1;
+            return;
+        }
+        return;
+    }
+    public function consultarValor(): int{
+        return $this->valor;
+    }
+}
+$contador= new Contador();
+$contador->incrementar();
+echo $contador->consultarValor() ."\n";
+$contador->decrementar();
+echo $contador->consultarValor() ."\n";
+$contador->decrementar();
+echo $contador->consultarValor()."\n";
 
 
 # EXERCÍCIO 03 - ALUNO E NOTAS
