@@ -52,8 +52,8 @@ class Produto{
         return $this->preco;
     }
     public function alterarPreco(float $novoPreco): bool{
-        if($novoPreco<= 0){
-            throw new \InvalidArgumentException("Preco deve ser maior ou igual a zero");
+        if($novoPreco< 0){
+            return false;
         }
         $this->preco = $novoPreco;
         return true;
@@ -172,11 +172,11 @@ class Alunos{
         return ($this->nota1 + $this->nota2) / 2;
     }
     public function verificarAprovacao():bool{
-        return (($this->nota1 + $this->nota2) / 2) >= 7;
+        return $this->calcularMedia() >= 7;
     }
     public function alterarNota1(float $nota):bool{
         if ($nota < 0 || $nota > 10 ){
-            throw new InvalidArgumentException("Notas devem estar entre 0 e 10");
+            return false;
         }
         $this->nota1 = $nota;
         return true;
@@ -233,3 +233,38 @@ class Alunos{
 # Em sistemas financeiros reais, precisamos
 # de representação monetária apropriada,
 # controle transacional e outras garantias.
+class Carteira{
+    private string $titular;
+    private float $saldo;
+
+    public function __construct(string $titular, float $saldo){
+        if($saldo <0){
+            throw new InvalidArgumentException("Valor inserido é inválido!");
+        }
+        $this->titular= $titular;
+        $this->saldo= $saldo;
+    }
+    public function getTitular():string{
+        return $this->titular;
+    }
+    public function consultarSaldo():float{
+        return $this->saldo;
+    }
+    public function depositar(float $valor): bool{
+        if ($valor <= 0){
+            return false;
+        }
+        $this->saldo += $valor;
+        return true;
+    }
+    public function sacar(float $valor): bool{
+        if($valor > $this->saldo || $this->saldo <= 0 || $valor <= 0){
+            return false;
+        }
+        $this->saldo -= $valor;
+        return true;
+
+    }
+
+
+}
