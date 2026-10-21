@@ -24,16 +24,13 @@ class Pessoa{
     public string $nome;
     public int $idade;
 
-    public function __construct(string $nome, int $idade){
-        $this->nome = $nome;
-        $this->idade = $idade;
-    }
-
     public function apresentar():void{
         echo "Meu nome e {$this->nome}, e tenho {$this->idade}\n";
     }
 }
 $pessoa1 = new Pessoa("Vitor", 22);
+$pessoa1->nome = "Vitor";
+$pessoa1->idade = 12;
 $pessoa1->apresentar();
 
 # EXERCÍCIO 02 - CLASSE PRODUTO
@@ -69,8 +66,8 @@ class Produto{
         $this->preco=$preco;
     }
     public function aplicarDesconto(float $desconto){
-        $this->preco = $this->preco - ($this->preco * $desconto/100);
-        return $this->preco;
+        $preco = $this->preco - ($this->preco * $desconto/100);
+        return $preco;
     }
 }
 
@@ -122,7 +119,7 @@ class Aluno{
 
     }
     public function verificarAprovacao():bool{
-        return $this->media >= 7;
+        return ($this->nota1 + $this->nota2) / 2 ;
     }
 }
 $aluno = new Aluno("Vitor", 9, 10);
