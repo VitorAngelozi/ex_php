@@ -20,8 +20,23 @@
 # Chame emitirSom() e exiba os resultados.
 #
 # Não coloque echo dentro dos métodos.
-
-
+interface Animal{
+    public function emitirSom():string;
+}
+class Cachorro implements Animal{
+    public function emitirSom():string{
+        return "Au au";
+    }
+}
+class Gato implements Animal{
+    public function emitirSom():string{
+        return "Miau";
+    }
+}
+$c1 = new Cachorro();
+echo $c1->emitirSom()."\n";
+$g1 = new Gato();
+echo $g1->emitirSom()."\n";
 # EXERCÍCIO 02 - FORMAS GEOMÉTRICAS
 #
 # Crie uma interface chamada FormaGeometrica.
@@ -43,8 +58,35 @@
 # Exiba as áreas calculadas.
 #
 # Utilize propriedades privadas.
+interface FormaGeometrica{
+    public function calcularArea():float;
+}
+class Quadrado implements FormaGeometrica{
+    private float $lado;
+    public function __construct(float $lado){
+        $this->lado = $lado;
+    }
+    public function calcularArea():float{
+        return $this->lado * $this->lado;
+    }
 
+}
+class Retangulo implements FormaGeometrica{
+    private float $largura;
+    private float $altura;
+    public function __construct(float $largura,$altura){
+        $this->largura = $largura;
+        $this->altura = $altura;
 
+    }
+    public function calcularArea():float{
+        return $this->largura * $this->altura;
+    }
+}
+$q = new Quadrado(2);
+$r = new Retangulo(3, 2);
+echo $q->calcularArea() ."\n";
+echo $r->calcularArea()."\n";
 # EXERCÍCIO 03 - NOTIFICAÇÕES
 #
 # Crie uma interface chamada Notificador.
@@ -75,7 +117,26 @@
 # do objeto recebido.
 #
 # Teste a função com email e SMS.
+interface Notificador{
+    public function enviar(string $mensagem): void;
+}
+class NotificadorEmail implements Notificador{
+    public function enviar(string $mensagem):void{
+        echo $mensagem;
+    }
+}
+class NotificadorSms implements Notificador{
+    public function enviar(string $mensagem):void{
+        echo $mensagem;
+    }
+}
+$e = new NotificadorEmail();
+$s = new NotificadorSms();
+$e->enviar("Email enviado: Pagamento recebido\n");
+$s->enviar("SMS enviado: Pagamento recebido\n");
 
+# "Email enviado: Pagamento recebido"
+# "SMS enviado: Pagamento recebido"
 
 # DESAFIO 04 - PEDIDO E NOTIFICAÇÃO
 #
