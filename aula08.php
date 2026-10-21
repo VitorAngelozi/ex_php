@@ -41,7 +41,7 @@ class Produto{
     public function __construct(string $nome, float $preco){
         $this->nome = $nome;
         if($preco< 0){
-            throw new InvalidArgumentException("Preco deve ser maior ou igual a zero");
+            throw new \InvalidArgumentException("Preco deve ser maior ou igual a zero");
         }
         $this->preco = $preco;
     }
@@ -53,7 +53,7 @@ class Produto{
     }
     public function alterarPreco(float $novoPreco): bool{
         if($novoPreco<= 0){
-            throw new InvalidArgumentException("Preco deve ser maior ou igual a zero");
+            throw new \InvalidArgumentException("Preco deve ser maior ou igual a zero");
         }
         $this->preco = $novoPreco;
         return true;
@@ -152,7 +152,39 @@ echo $contador->consultarValor()."\n";
 # Situação: reprovado.
 # Tentar alterar nota1 para 15.
 # A nota deverá permanecer 4.
+class Alunos{
+    private string $nome;
+    private float $nota1;
+    private float $nota2;
 
+    public function __construct(string $nome,float $nota1, float $nota2){
+        if ($nota1 < 0 || $nota1 > 10 || $nota2 < 0 || $nota2 > 10){
+            throw new \InvalidArgumentException("Notas devem estar entre 0 e 10");
+        }
+        $this->nome = $nome;
+        $this->nota1 = $nota1;
+        $this->nota2 = $nota2;
+    }
+    public function getNome():string{
+        return $this->nome;
+    }
+    public function calcularMedia():float{
+        return ($this->nota1 + $this->nota2) / 2;
+    }
+    public function verificarAprovacao():bool{
+        return (($this->nota1 + $this->nota2) / 2) >= 7;
+    }
+    public function alterarNota1(float $nota):bool{
+        if ($nota < 0 || $nota > 10 ){
+            throw new InvalidArgumentException("Notas devem estar entre 0 e 10");
+        }
+        $this->nota1 = $nota;
+        return true;
+    }
+    
+}
+ $aluno = new Alunos("Vitor", 9, 6);
+ echo $aluno->getNome() . "\n";
 
 # DESAFIO 04 - CARTEIRA SEGURA
 #
