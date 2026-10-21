@@ -75,7 +75,7 @@ class Produto{
 }
 
 $mouse = new Produto("Mouse", 100);
-echo($mouse->aplicarDesconto(10));
+echo($mouse->aplicarDesconto(10) ."\n");
 
 # EXERCÍCIO 03 - CLASSE ALUNO
 #
@@ -99,7 +99,40 @@ echo($mouse->aplicarDesconto(10));
 # Dica: um método pode chamar outro
 # método da mesma classe utilizando $this.
 
+class Aluno{
+    public string $nome;
+    public float $nota1;
+    public float $nota2;
+    public float $media;
+    public function __construct(string $nome, float $nota1, float $nota2){
+        $this->nome    = $nome;
+        $this->nota1   = $nota1;
+        $this->nota2   = $nota2;
+        
+    }
+    public function getNome():string{
+        return $this->nome;
+    }
+    public function exibir():string{
+        return "Nome: {$this->nome}, notas: {$this->nota1}, {$this->nota2}\n";
+    }
+    public function calcularMedia():float{
+        $this->media = ($this->nota1 + $this->nota2) / 2;
+        return $this->media;
 
+    }
+    public function verificarAprovacao():bool{
+        return $this->media >= 7;
+    }
+}
+$aluno = new Aluno("Vitor", 9, 10);
+echo $aluno->exibir();
+echo $aluno->calcularMedia() . "\n";
+if($aluno->verificarAprovacao()){
+    echo "Aluno: {$aluno->getNome()}, aprovado!";
+}else{
+    echo "Aluno: {$aluno->getNome()}, reprovado";
+}
 # DESAFIO 04 - CLASSE CARTEIRA
 #
 # Crie uma classe chamada Carteira.
@@ -126,3 +159,33 @@ echo($mouse->aplicarDesconto(10));
 # Tente também depositar -20.
 # O saldo deverá continuar em 150.
 # Não implemente transferências ainda
+
+class Carteira{
+    public string $titular;
+    public float $saldo;
+
+    public function __construct(string $titular, float $saldo){
+        $this->titular  = $titular;
+        $this->saldo    = $saldo;
+    }
+    public function depositar(float $valor){
+        if($valor > 0){
+            $this->saldo += $valor;
+            return true;
+        }
+        return false;
+        }
+    public function consultarSaldo(){
+        return $this->saldo;
+        
+    }
+}
+
+$titular = new Carteira("Vitor", 100);
+echo $titular->consultarSaldo() . "\n";
+$titular->depositar(10);
+echo $titular->consultarSaldo() . "\n";
+$titular->depositar(-1);
+echo $titular->consultarSaldo()."\n";
+
+
