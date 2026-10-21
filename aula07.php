@@ -28,10 +28,15 @@ class Pessoa{
         echo "Meu nome e {$this->nome}, e tenho {$this->idade}\n";
     }
 }
-$pessoa1 = new Pessoa("Vitor", 22);
+$pessoa1 = new Pessoa();
 $pessoa1->nome = "Vitor";
 $pessoa1->idade = 12;
 $pessoa1->apresentar();
+$pessoa2 = new Pessoa();
+$pessoa2->nome = "Paulo";
+$pessoa2->idade = 22;
+$pessoa2->apresentar();
+
 
 # EXERCÍCIO 02 - CLASSE PRODUTO
 #
@@ -119,7 +124,7 @@ class Aluno{
 
     }
     public function verificarAprovacao():bool{
-        return ($this->nota1 + $this->nota2) / 2 ;
+        return (($this->nota1 + $this->nota2) / 2) >=7 ;
     }
 }
 $aluno = new Aluno("Vitor", 9, 10);
