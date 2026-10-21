@@ -30,7 +30,7 @@ class Pessoa{
     }
 
     public function apresentar():void{
-        echo "Meu nome e {$this->nome}, e tenho {$this->idade}";
+        echo "Meu nome e {$this->nome}, e tenho {$this->idade}\n";
     }
 }
 $pessoa1 = new Pessoa("Vitor", 22);
@@ -61,7 +61,21 @@ $pessoa1->apresentar();
 #
 # Não altere o preço original do objeto.
 # Apenas retorne o preço com desconto.
+class Produto{
+    public string $nome;
+    public float $preco;
+    public function __construct(string $nome, float $preco){
+        $this->nome =$nome;
+        $this->preco=$preco;
+    }
+    public function aplicarDesconto(float $desconto){
+        $this->preco = $this->preco - ($this->preco * $desconto/100);
+        return $this->preco;
+    }
+}
 
+$mouse = new Produto("Mouse", 100);
+echo($mouse->aplicarDesconto(10));
 
 # EXERCÍCIO 03 - CLASSE ALUNO
 #
