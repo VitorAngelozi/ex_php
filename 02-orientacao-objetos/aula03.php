@@ -74,7 +74,7 @@ class Quadrado implements FormaGeometrica{
 class Retangulo implements FormaGeometrica{
     private float $largura;
     private float $altura;
-    public function __construct(float $largura,$altura){
+    public function __construct(float $largura, float $altura){
         $this->largura = $largura;
         $this->altura = $altura;
 
@@ -117,26 +117,32 @@ echo $r->calcularArea()."\n";
 # do objeto recebido.
 #
 # Teste a função com email e SMS.
-interface Notificador{
+interface Notificador {
     public function enviar(string $mensagem): void;
 }
-class NotificadorEmail implements Notificador{
-    public function enviar(string $mensagem):void{
-        echo $mensagem;
+
+class NotificadorEmail implements Notificador {
+    public function enviar(string $mensagem): void {
+        // A própria classe adiciona o texto do canal antes da mensagem!
+        echo "Email enviado: " . $mensagem . "\n";
     }
 }
-class NotificadorSms implements Notificador{
-    public function enviar(string $mensagem):void{
-        echo $mensagem;
+
+class NotificadorSms implements Notificador {
+    public function enviar(string $mensagem): void {
+        // A mesma coisa aqui, mudando para SMS
+        echo "SMS enviado: " . $mensagem . "\n";
     }
 }
+
+function enviarAviso(Notificador $notificador, string $mensagem){
+    $notificador->enviar($mensagem);
+}
+
 $e = new NotificadorEmail();
 $s = new NotificadorSms();
-$e->enviar("Email enviado: Pagamento recebido\n");
-$s->enviar("SMS enviado: Pagamento recebido\n");
-
-# "Email enviado: Pagamento recebido"
-# "SMS enviado: Pagamento recebido"
+enviarAviso($s, "Email enviado: Pagamento recebido\n");
+enviarAviso($e, "SMS enviado: Pagamento recebido\n");
 
 # DESAFIO 04 - PEDIDO E NOTIFICAÇÃO
 #
@@ -168,3 +174,23 @@ $s->enviar("SMS enviado: Pagamento recebido\n");
 # Não utilize Laravel.
 # Não utilize herança.
 # Utilize composição e interfaces.
+
+class Pedido{
+    private int $numero;
+    private float $valor;
+    private Notificador $notificador;
+    public function __construct(int $numero, float $valor, Notificador $notificador){
+        $this->numero=$numero;
+        $this->valor=$valor;
+        $this->notificador=$notificador;
+    }
+    public function confirmar():bool{
+        if($this->valor<=0){
+            return false;
+        }
+        $this->notificador->enviar("Pedido {$this->numero}: Valor {$this->valor}, notificação por {$this->notificador->enviarAviso()}");
+        return true;
+    }
+}
+$p1 = new Pedido(1,22, $e);
+$p1->confirmar();
