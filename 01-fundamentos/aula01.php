@@ -4,7 +4,7 @@
 #Depois, exiba uma frase utilizando essas variáveis.
 #Exemplo de saída:
 $nome = "Vitor";
-$idade = "22"; #n fiz int pq normalmente idade e cpf são str né? php n é tipado? ntinha q colocar valor?
+$idade = "22"; 
 $cidade = "CG - MS";
 $profissao = "Vibecoder";
 
