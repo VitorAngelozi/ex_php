@@ -53,3 +53,39 @@ try {
     echo $erro->getMessage();
 }
 echo "Programa finalizado";
+
+# EXERCÍCIO 02 - VALIDANDO IDADE
+#
+# Crie uma função chamada validarIdade().
+#
+# Parâmetro:
+# - int $idade
+#
+# Retorno:
+# - bool
+#
+# REGRAS:
+# - Se a idade for negativa, lance uma
+#   InvalidArgumentException.
+#
+# - Se a idade for menor que 18,
+#   retorne false.
+#
+# - Se a idade for 18 ou maior,
+#   retorne true.
+#
+# TESTES:
+#
+# validarIdade(20) -> true
+# validarIdade(15) -> false
+# validarIdade(-5) -> exceção
+#
+# Utilize try/catch para os testes.
+#
+# EXTRA:
+# Utilize finally para exibir:
+# "Validação finalizada"
+#
+# Verifique se o finally é executado
+# quando acontece uma exceção e quando
+# a operação termina normalmente.
