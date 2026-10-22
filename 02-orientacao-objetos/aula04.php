@@ -33,3 +33,23 @@
 #
 # Esse texto deverá aparecer mesmo
 # depois da tentativa de divisão por zero.
+
+
+function dividir(float $a, float $b){
+    if($b === 0){
+        throw new InvalidArgumentException("Não é permitido número como divisor");
+    }
+    return $a / $b;
+}
+
+try {
+    echo dividir(10,2);
+} catch (Exception $erro){
+    echo $erro->getMessage();
+}
+try {
+    echo dividir(10,0);
+} catch (Exception $erro){
+    echo $erro->getMessage();
+}
+echo "Programa finalizado";
