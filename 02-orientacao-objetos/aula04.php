@@ -35,16 +35,16 @@
 # depois da tentativa de divisão por zero.
 
 
-function dividir(float $a, float $b){
-    if($b === 0){
-        throw new InvalidArgumentException("Não é permitido número como divisor");
+function dividir(float $a, float $b):float{
+    if($b === 0.0){
+        throw new InvalidArgumentException("Não é possível dividir por zero");
     }
     return $a / $b;
 }
 
 try {
     echo dividir(10,2);
-} catch (Exception $erro){
+} catch (InvalidArgumentException $erro){
     echo $erro->getMessage();
 }
 try {
