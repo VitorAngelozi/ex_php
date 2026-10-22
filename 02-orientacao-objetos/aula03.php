@@ -124,14 +124,14 @@ interface Notificador {
 class NotificadorEmail implements Notificador {
     public function enviar(string $mensagem): void {
         // A própria classe adiciona o texto do canal antes da mensagem!
-        echo "Email enviado: " . $mensagem . "\n";
+        echo "Email " . $mensagem . "\n";
     }
 }
 
 class NotificadorSms implements Notificador {
     public function enviar(string $mensagem): void {
         // A mesma coisa aqui, mudando para SMS
-        echo "SMS enviado: " . $mensagem . "\n";
+        echo "SMS " . $mensagem . "\n";
     }
 }
 
@@ -141,8 +141,8 @@ function enviarAviso(Notificador $notificador, string $mensagem){
 
 $e = new NotificadorEmail();
 $s = new NotificadorSms();
-enviarAviso($s, "Email enviado: Pagamento recebido\n");
-enviarAviso($e, "SMS enviado: Pagamento recebido\n");
+enviarAviso($s, "Pagamento recebido");
+enviarAviso($e, "Pagamento recebido");
 
 # DESAFIO 04 - PEDIDO E NOTIFICAÇÃO
 #
@@ -180,17 +180,23 @@ class Pedido{
     private float $valor;
     private Notificador $notificador;
     public function __construct(int $numero, float $valor, Notificador $notificador){
-        $this->numero=$numero;
-        $this->valor=$valor;
-        $this->notificador=$notificador;
+        $this->numero       =$numero;
+        $this->valor        =$valor;
+        $this->notificador  =$notificador;
     }
     public function confirmar():bool{
         if($this->valor<=0){
             return false;
         }
-        $this->notificador->enviar("Pedido {$this->numero}: Valor {$this->valor}, notificação por {$this->notificador->enviarAviso()}");
+        $mensagem = "Pedido {$this->numero}, valor: {$this->valor}";
+
+        $this->notificador->enviar($mensagem);
         return true;
     }
 }
-$p1 = new Pedido(1,22, $e);
-$p1->confirmar();
+$p1 = new Pedido(1,100, $e);
+var_dump($p1->confirmar());
+$p2 = new Pedido(2,200,$s);
+var_dump($p2->confirmar());
+$p3 = new Pedido(3, -50, $e);
+var_dump($p3->confirmar());
