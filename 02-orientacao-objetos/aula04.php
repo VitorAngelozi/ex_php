@@ -43,16 +43,16 @@ function dividir(float $a, float $b):float{
 }
 
 try {
-    echo dividir(10,2);
+    echo dividir(10,2) . "\n";
 } catch (InvalidArgumentException $erro){
     echo $erro->getMessage();
 }
-try {
-    echo dividir(10,0);
-} catch (Exception $erro){
-    echo $erro->getMessage();
-}
-echo "Programa finalizado";
+#try {
+    #echo dividir(10,0);
+#} #catch (Exception $erro){
+    #echo $erro->getMessage();
+#}
+echo "Programa finalizado\n";
 
 # EXERCÍCIO 02 - VALIDANDO IDADE
 #
@@ -89,3 +89,36 @@ echo "Programa finalizado";
 # Verifique se o finally é executado
 # quando acontece uma exceção e quando
 # a operação termina normalmente.
+
+function validarIdade(int $idade):bool{
+    if ($idade < 0){
+        throw new InvalidArgumentException("Idade inválida");
+    }
+    if($idade < 18){
+        return false;
+    }
+    return true; 
+
+}
+try {
+    var_dump(validarIdade(20));
+}catch(Exception $erro){
+    echo $erro->getMessage() . "\n";
+}finally{
+    echo "Validação finalizada\n";
+}
+try {
+    var_dump(validarIdade(15));
+}catch(Exception $erro){
+    echo $erro->getMessage();
+}finally{
+    echo "Validação 2 finalizada\n";
+}
+
+try {
+    var_dump(validarIdade(-5));
+}catch(Exception $erro){
+    echo $erro->getMessage();
+}finally{
+    echo "Validação 3 finalizada\n";
+}
