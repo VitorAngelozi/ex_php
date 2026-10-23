@@ -200,3 +200,56 @@ $p2 = new Pedido(2,200,$s);
 var_dump($p2->confirmar());
 $p3 = new Pedido(3, -50, $e);
 var_dump($p3->confirmar());
+
+class Carteira2{
+    private float $saldo;
+    public function __construct(float $saldo){
+        if($saldo < 0){
+            throw new InvalidArgumentException("Saldo insuficiente\n");
+        }
+        $this->saldo = $saldo;
+    }
+    public function consultarSaldo():float{
+        return $this->saldo;
+    }
+    public function depositar(float $valor):void{
+        if ($valor <= 0){
+            throw new InvalidArgumentException("Valor inválido\n");
+        }
+        $this->saldo += $valor;
+    }
+    public function sacar(float $valor):void{
+        if ($valor <= 0){
+            throw new InvalidArgumentException("Valor inválido\n");
+        }
+        if ($valor > $this->saldo){
+            throw new Exception("Saldo Insuficiente\n");
+        }
+        $this->saldo -= $valor;
+    }
+}
+
+function executarTeste(callable $operacao):void{
+    try{
+        $operacao();
+    }catch(Exception $erro){
+        echo "Erro: " . $erro->getMessage() . "\n";
+    }
+}
+
+$c1 = new Carteira2(100);
+executarTeste(function () use ($c1) {
+    $c1->depositar(30);
+});
+executarTeste(function () use ($c1) {
+    $c1->sacar(30);
+});
+executarTeste(function () use ($c1) {
+    $c1->sacar(200);
+});
+executarTeste(function () use ($c1) {
+    $c1->depositar(-10);
+});
+executarTeste(function () use ($c1) {
+    $c1->sacar(-50);
+});
