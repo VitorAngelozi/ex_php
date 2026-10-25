@@ -98,23 +98,23 @@
 #
 # 1. Quais classes você pretende criar?
 #
-# Resposta:
-#
+# Resposta: pedidos e notificador email e sms
 #
 # 2. Quais interfaces você pretende criar?
 #
-# Resposta:
+# Resposta: interface de notificador
 #
 #
 # 3. Qual será a responsabilidade de cada classe?
 #
-# Resposta:
+# Resposta: a classe de pedidos vai ficar responsavel pela logica e validacao de produtos, as classes
+# de notificacao pela notificacao individual
 #
 #
 # 4. Como você impedirá que um pedido confirmado
 #    seja confirmado novamente?
 #
-# Resposta:
+# Resposta: confirmar se ele ja esta confirmado. se tiver, nao,
 #
 #
 # ETAPA 02 - IMPLEMENTAÇÃO
@@ -173,4 +173,21 @@ class Pedido{
     private string $nomeCliente;
     private float $valor;
     private string $situacao = "pendente";
+    # 2. Pedidos com valor menor ou igual a zero
+#    não podem ser criados.
+
+    public function __construct(int $numero, string $nomeCliente, float $valor, string $sitaucao){
+        $this->numero= $numero;
+        $this->nomeCliente = $nomeCliente;
+        $this->valor = $valor;
+        $this->situacao = $situacao;
+    }
+# 3. Um pedido pendente pode ser confirmado.
+#
+# 4. Um pedido confirmado não pode ser
+#    confirmado novamente.
+#
+# 5. Um pedido pendente pode ser cancelado.
+#
+# 6. Um pedido cancelado não pode ser confirmado.
 }
