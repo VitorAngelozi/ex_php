@@ -34,7 +34,18 @@
 # PASSOU: 10 é maior que 5
 # FALHOU: 3 é igual a 5
 #
-#
+
+function verificar(bool $condicao, string $descricao):void{
+	if($condicao){
+		echo "Passou: {$descricao}";
+		return;
+	}
+	echo "Falhou: {$descricao}";
+}
+verificar(10 > 5, "10 é maior que 5");
+verificar(3 === 5, "3 é igual a 5");
+
+
 # EXERCÍCIO 02 - VALIDANDO SAQUES
 #
 # Crie uma função chamada podeSacar().
