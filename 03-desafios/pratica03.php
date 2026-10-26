@@ -177,14 +177,14 @@ interface Notificador{
 class NotificadorEmail implements Notificador {
     public function enviar(string $mensagem): void {
         // A própria classe adiciona o texto do canal antes da mensagem!
-        echo "Email " . $mensagem . "\n";
+        echo "Email: " . $mensagem . "\n";
     }
 }
 
 class NotificadorSms implements Notificador {
     public function enviar(string $mensagem): void {
         // A mesma coisa aqui, mudando para SMS
-        echo "SMS " . $mensagem . "\n";
+        echo "SMS: " . $mensagem . "\n";
     }
 }
 
@@ -211,6 +211,9 @@ class Pedido{
             throw new InvalidValueError("Situação não se encontra como pendente!");
         }
         $this->situacao = "confimado";
+        $mensagem       = "Confirmação do pedido {$this->numero}. Situação: {$this->situacao}."
+        $this->notificador->enviar($mensagem);
+        return true;
 
     }
 
@@ -219,6 +222,9 @@ class Pedido{
             throw new InvalidValueError("Situação não se encontra como pendente!")
         }
         $this->situacao = "cancelado";
+        $mensagem       = "Cancelamento do pedido {$this->numero}. Situação: {$this->situacao}."
+        $this->notificador->enviar($mensagem);
+        return true;
     }
 
 # 1. Todo pedido deve começar como "pendente". - ok
