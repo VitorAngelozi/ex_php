@@ -170,7 +170,7 @@
 
 
 interface Notificador{
-    public function enviar($string):void;
+    public function enviar(string $mensagem):void;
 
 }
 
@@ -195,9 +195,9 @@ class Pedido{
     private string $situacao = "pendente";
     private Notificador $notificador;
 
-    public function __construct(int $numero, string $nomeCliente, float $valor, Notificador $notificador{
-        if ($valor <= 0){
-            throw new InvalidValueError("Valor não pode ser igual ou menos a zero");            
+    public function __construct(int $numero, string $nomeCliente, float $valor, Notificador $notificador){
+        if($valor <= 0){
+            throw new InvalidArgumentException("Valor não pode ser igual ou menos a zero\n");            
         }
 
         $this->numero       = $numero;
@@ -206,48 +206,58 @@ class Pedido{
         $this->notificador  = $notificador;
     }
 
-    public function confirmar(){
+    public function confirmar():bool{
         if ($this->situacao != "pendente"){
-            throw new InvalidValueError("Situação não se encontra como pendente!");
+            throw new InvalidArgumentException("Situação não se encontra como pendente!\n");
         }
-        $this->situacao = "confimado";
-        $mensagem       = "Confirmação do pedido {$this->numero}. Situação: {$this->situacao}."
+        $this->situacao = "confirmado";
+        $mensagem       = "Confirmação do pedido {$this->numero}. Situação: {$this->situacao}.";
         $this->notificador->enviar($mensagem);
         return true;
 
     }
 
-    public function cancelar(){
+    public function cancelar():bool{
         if ($this->situacao != "pendente"){
-            throw new InvalidValueError("Situação não se encontra como pendente!")
+            throw new InvalidArgumentException("Situação não se encontra como pendente!\n");
         }
         $this->situacao = "cancelado";
-        $mensagem       = "Cancelamento do pedido {$this->numero}. Situação: {$this->situacao}."
+        $mensagem       = "Cancelamento do pedido {$this->numero}. Situação: {$this->situacao}.\n";
         $this->notificador->enviar($mensagem);
         return true;
     }
 
-# 1. Todo pedido deve começar como "pendente". - ok
-#
-# 2. Pedidos com valor menor ou igual a zero
-#    não podem ser criados.
-#
-# 3. Um pedido pendente pode ser confirmado.
-#
-# 4. Um pedido confirmado não pode ser
-#    confirmado novamente.
-#
-# 5. Um pedido pendente pode ser cancelado.
-#
-# 6. Um pedido cancelado não pode ser confirmado.
-#
-# 7. Quando um pedido for confirmado,
-#    o cliente deverá receber uma notificação.
-#
-# 8. O sistema deverá permitir notificações
-#    por email e SMS.
-#
-# 9. Operações inválidas devem lançar exceções.
-#
-# 10. As propriedades dos pedidos devem
-#     estar protegidas por encapsulamento.
+    public function verSituacao():string{
+        return $this->situacao;
+    }
+
+}
+function executarTeste(callable $operacao):void{
+    try{
+        $operacao();
+    }catch(Exception $erro){
+        echo "Erro: " . $erro->getMessage() . "\n";
+    }
+}
+$email = new NotificadorEmail();
+$sms = new NotificadorSms();
+$p1 = new Pedido(1, "Carlos", 150, $email);
+echo $p1->verSituacao() . PHP_EOL;
+executarTeste(function () use ($p1) {
+    $p1->confirmar();
+});
+executarTeste(function () use ($p1){
+    $p1->confirmar();
+});
+executarTeste(function () use ($sms) {
+    $p2 = new Pedido(2, "Teste", -20, $sms);
+});
+$p3 = new Pedido(1, "Joao", 80, $sms);
+echo $p3->verSituacao() . PHP_EOL;
+executarTeste(function () use ($p3) {
+    $p3->cancelar();
+});
+executarTeste(function () use ($p3){
+    $p3->cancelar();
+});
+
