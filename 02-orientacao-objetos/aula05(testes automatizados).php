@@ -37,10 +37,10 @@
 
 function verificar(bool $condicao, string $descricao):void{
 	if($condicao){
-		echo "Passou: {$descricao}";
+		echo "Passou: {$descricao}\n";
 		return;
 	}
-	echo "Falhou: {$descricao}";
+	echo "Falhou: {$descricao}\n";
 }
 verificar(10 > 5, "10 é maior que 5");
 verificar(3 === 5, "3 é igual a 5");
@@ -79,7 +79,18 @@ verificar(3 === 5, "3 é igual a 5");
 #
 # Utilize verificar() para comparar
 # o resultado real com o esperado.
-#
+
+function podeSacar(float $saldo, float $valor):bool{
+	if ($valor >= 0 && $valor >= $saldo){
+		return true;
+	}
+	return false;
+}
+verificar(podeSacar(100, 50),"saldo 100 maior que 50");
+verificar(podeSacar(100, 100), "saldo 100 igual a 100");
+verificar(podeSacar(100, 150), "saldo 100 menor que 150");
+verificar(podeSacar(100, 0), "saldo 100 maior que 0");
+verificar(podeSacar(100, -30), "saldo 100 maior que -30");
 #
 # EXERCÍCIO 03 - TESTANDO UMA CARTEIRA
 #
