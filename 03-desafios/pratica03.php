@@ -168,20 +168,64 @@
 # - Valor
 # - Situação
 
+
+interface Notificador{
+    public function enviar($string):void;
+
+}
+
+class NotificadorEmail implements Notificador {
+    public function enviar(string $mensagem): void {
+        // A própria classe adiciona o texto do canal antes da mensagem!
+        echo "Email " . $mensagem . "\n";
+    }
+}
+
+class NotificadorSms implements Notificador {
+    public function enviar(string $mensagem): void {
+        // A mesma coisa aqui, mudando para SMS
+        echo "SMS " . $mensagem . "\n";
+    }
+}
+
 class Pedido{
     private int $numero;
     private string $nomeCliente;
     private float $valor;
     private string $situacao = "pendente";
-    # 2. Pedidos com valor menor ou igual a zero
-#    não podem ser criados.
+    private Notificador $notificador;
 
-    public function __construct(int $numero, string $nomeCliente, float $valor, string $sitaucao){
-        $this->numero= $numero;
-        $this->nomeCliente = $nomeCliente;
-        $this->valor = $valor;
-        $this->situacao = $situacao;
+    public function __construct(int $numero, string $nomeCliente, float $valor, Notificador $notificador{
+        if ($valor <= 0){
+            throw new InvalidValueError("Valor não pode ser igual ou menos a zero");            
+        }
+
+        $this->numero       = $numero;
+        $this->nomeCliente  = $nomeCliente;
+        $this->valor        = $valor;
+        $this->notificador  = $notificador;
     }
+
+    public function confirmar(){
+        if ($this->situacao != "pendente"){
+            throw new InvalidValueError("Situação não se encontra como pendente!");
+        }
+        $this->situacao = "confimado";
+
+    }
+
+    public function cancelar(){
+        if ($this->situacao != "pendente"){
+            throw new InvalidValueError("Situação não se encontra como pendente!")
+        }
+        $this->situacao = "cancelado";
+    }
+
+# 1. Todo pedido deve começar como "pendente". - ok
+#
+# 2. Pedidos com valor menor ou igual a zero
+#    não podem ser criados.
+#
 # 3. Um pedido pendente pode ser confirmado.
 #
 # 4. Um pedido confirmado não pode ser
@@ -190,4 +234,14 @@ class Pedido{
 # 5. Um pedido pendente pode ser cancelado.
 #
 # 6. Um pedido cancelado não pode ser confirmado.
-}
+#
+# 7. Quando um pedido for confirmado,
+#    o cliente deverá receber uma notificação.
+#
+# 8. O sistema deverá permitir notificações
+#    por email e SMS.
+#
+# 9. Operações inválidas devem lançar exceções.
+#
+# 10. As propriedades dos pedidos devem
+#     estar protegidas por encapsulamento.

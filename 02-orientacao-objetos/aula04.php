@@ -122,3 +122,99 @@ try {
 }finally{
     echo "Validação 3 finalizada\n";
 }
+
+# EXERCÍCIO 03 - CARTEIRA COM EXCEÇÕES
+#
+# Crie uma classe chamada Carteira.
+#
+# Propriedade privada:
+# - saldo (float)
+#
+# CONSTRUTOR:
+# - Recebe o saldo inicial.
+# - Se for negativo, lança
+#   InvalidArgumentException.
+#
+# MÉTODOS:
+# - consultarSaldo(): float
+# - depositar(float $valor): void
+# - sacar(float $valor): void
+#
+# REGRAS DO DEPÓSITO:
+# - Se o valor for menor ou igual a zero,
+#   lance InvalidArgumentException.
+# - Caso contrário, atualize o saldo.
+#
+# REGRAS DO SAQUE:
+# - Se o valor for menor ou igual a zero,
+#   lance InvalidArgumentException.
+# - Se o valor for maior que o saldo,
+#   lance Exception("Saldo insuficiente").
+# - Caso contrário, desconte o valor.
+#
+# TESTES:
+# Crie uma carteira com saldo de 100.
+#
+# 1. Depositar 50 -> saldo 150.
+# 2. Sacar 30 -> saldo 120.
+# 3. Sacar 200 -> exceção.
+# 4. Depositar -10 -> exceção.
+# 5. Sacar -50 -> exceção.
+#
+# Utilize try/catch para tratar as exceções.
+#
+# IMPORTANTE:
+# Mesmo depois das operações inválidas,
+# o saldo deve continuar em 120.
+#
+# Não utilize Laravel.
+
+class Carteira2{
+    private float $saldo;
+    public function __construct(float $saldo){
+        if($saldo < 0){
+            throw new InvalidArgumentException("Saldo insuficiente");
+        }
+        $this->saldo = $saldo;
+    }
+    public function consultarSaldo():float{
+        return $this->saldo;
+    }
+    public function depositar(float $valor):void{
+        if ($valor <= 0){
+            throw new InvalidArgumentException("Valor inválido");
+        }
+        $this->saldo += $valor;
+    }
+    public function sacar(float $valor):void{
+        if ($valor <= 0){
+            throw new InvalidArgumentException("Valor inválido");
+        }
+        if ($valor > $this->saldo){
+            throw new Exception("Saldo Insuficiente");
+        }
+        $this->saldo -= $valor;
+    }
+}
+
+$c1 = new Carteira2(100);
+echo $c1->consultarSaldo();
+$c1->depositar(50);
+echo $c1->consultarSaldo();
+$c1->sacar(30);
+echo $c1->consultarSaldo();
+$c1->sacar(200);
+echo $c1->consultarSaldo();
+$c1->depositar(-10);
+$c1->sacar(-50);
+echo $c1->consultarSaldo();
+
+
+
+
+
+# 1. Depositar 50 -> saldo 150.
+# 2. Sacar 30 -> saldo 120.
+# 3. Sacar 200 -> exceção.
+# 4. Depositar -10 -> exceção.
+# 5. Sacar -50 -> exceção.
